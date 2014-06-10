@@ -5,7 +5,7 @@ public class BirdMovement : MonoBehaviour {
 
 	Vector3 velocity = Vector3.zero;
 	public float flapSpeed = 150f;
-	public float forwardSpeed = 1.3f;
+	public float forwardSpeed = .6f;
 	
 	bool didFlap = false;
 	bool dead = false;
@@ -71,13 +71,14 @@ public class BirdMovement : MonoBehaviour {
 			didFlap = false;
 		}
 
-		if (rigidbody2D.velocity.y > -0.25f) {
-			transform.rotation = Quaternion.Euler(0, 0, 0);
+		if (rigidbody2D.velocity.y > -0.5f) {
+			float angle = Mathf.Lerp(0, 15, rigidbody2D.velocity.y);
+			transform.rotation = Quaternion.Euler(0, 0, angle);
 
-		}else{
+		} else {
 
 
-			float angle = Mathf.Lerp(0, -90, -rigidbody2D.velocity.y / 5f);
+			float angle = Mathf.Lerp(0, -90, -rigidbody2D.velocity.y / 3f);
 			transform.rotation = Quaternion.Euler(0, 0, angle);
 		}
 
